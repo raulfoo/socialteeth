@@ -1,0 +1,41 @@
+<div id="fullBanner">
+<% $global_variable =1 %>
+<%index = $global_variable%>
+
+  <div id = "speaker">
+    <img id="chatAd" src="images/bannerChatter/<%= Chat[index][:image] %>" alt ="NA"/>
+  
+
+    <div id="subtitles">
+
+     <%= Chat[index][:name]%> <br />
+     <i><%= Chat[index][:occupation]%> <br /></i>
+     <%= Chat[index][:location]%> <br />
+    </div>
+  </div>
+  
+  <div id="message">
+    <a href="#" id="messageLink">"<%= Chat[index][:message]%>"</a><br />
+  </div>
+  
+</div>
+
+
+<div id="embeddedVid" >
+  <iframe  id="embeddedVidPlayer" src="<%= Ad[1].video_embed_url%>" width="515" height="380" frameborder="0"></iframe>
+
+ 
+
+</div>
+
+<div id ="rightArrow">
+<a href="#">-></a>
+</div>
+
+<div id ="leftArrow">
+<a href="#"><-</a>
+
+</div>
+
+<div id="adMessage"><a href="/createBanner"> Ad your own! </a></div>
+

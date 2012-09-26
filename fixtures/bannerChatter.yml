@@ -1,0 +1,20 @@
+bannerChatter:
+  - name: "Iago"
+    about: >
+      Allosaur
+    location: >
+      Pangea
+    message: > 
+      The population size needs to be controlled!
+    Cuase_url: "http://youtu.be/YnTPrH-jS48"
+    thumbnail_file: "public/images/bannerChatter/AllosaurRight.png"
+
+  - name: "Iago"
+    about: >
+      Allosaur
+    location: >
+      Pangea
+    message: > 
+      The population size needs to be controlled!
+    Cuase_url: "http://youtu.be/YnTPrH-jS48"
+    thumbnail_file: "public/images/bannerChatter/AllosaurRight.png"

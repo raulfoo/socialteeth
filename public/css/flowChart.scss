@@ -1,130 +1,85 @@
 @import "css/mixins";
 
-#flowChartTitleDiv {
-  position: absolute;
-  margin-left: 140px;
-  margin-top: -45px;
-  text-align: center;
-  width: 400px;
-  font-size: 1.6em;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+#chatAd{
+  width:100px;
+  height:100px;
+
 }
 
-#fullFlow {
-  margin-top: 60px;
+#speaker{
+  margin-left:675px;
+
+}
+
+
+#fullBanner {
+  margin-left:12px;
+  margin-top: 10px;
   width: 800px;
-  height: 300px;
+  height: 150px;
 }
 
-#videoHeading {
-  width: 100%;
-  height: 20px;
-  padding: 5px;
-  font-weight: bold;
-  text-align: right;
-  a { color: $lightText; }
-  &:hover a { color: $highlight; }
-  cursor: pointer;
+#message{
+position:absolute;
+float:right;
+width:555px;
+margin-left:110px;
+margin-right:600px;
+top:250px;
+
 }
 
-.Tiers {
-  position: absolute;
-  display: none;
+
+#messagePreview{
+position:absolute;
+float:right;
+width:555px;
+margin-left:110px;
+margin-right:600px;
+top:220px;
+
 }
 
-.Tier1 {
-  position: absolute;
+#messageLink{
+
+float:right;
+
 }
 
-.subFlowChart {
-  position: absolute;
-  width: 800px;
-  height: 600px;
-  margin-left: -70px;
-  clip: rect(0px, 800px, 300px, 0px);
+#embeddedVid{
+display:none;
+margin-left:140px;
+margin-top:20px;
+
+
 }
 
-.subFlowChartFork {
-  position: absolute;
-  width: 800px;
-  height: 600px;
-  margin-left: -70px;
-  cursor: pointer;
+#rightArrow{
+position:absolute;
+text-size:2em;
+margin-left:800px;
+top:250px;
+
+
 }
 
-.subFlowChartEnd {
-  position: absolute;
-  width: 800px;
-  height: 600px;
-  margin-left: -70px;
-  cursor: pointer;
+#leftArrow{
+position:absolute;
+text-size:2em;
+top:250px;
+margin-left:-20px;
+
+
 }
 
-#Tier1Yes{
-  clip:rect(50px,320px,130px,180px);
+
+#adMessage{
+position:absolute;
+margin-left:700px;
+margin-top:-170px;
+
 }
 
-#Tier2Yes{
-  clip:rect(210px,230px,280px,100px);
-}
 
-#Tier3Yes{
-  clip:rect(380px,300px,450px,95px);
-z-index:200;
-}
 
-#Tier4Yes{
-  clip:rect(250px,700px,320px,590px);
-z-index:200;
-}
 
-#Tier1No{
-  clip:rect(50px,700px,130px,450px);
-z-index:200;
-}
-
-#Tier2No{
-  clip:rect(210px,390px,280px,310px);
-z-index:200;
-}
-
-#Tier3No{
-  clip:rect(310px,400px,380px,320px);
-  z-index:200;
-}
-
-#Tier4No{
-  clip:rect(425px,620px,490px,340px);
-  z-index:200;
-}
-
-#Tier1EndImg{
-  clip:rect(115px,680px,210px,470px);
-}
-
-#Tier2EndImg{
-  clip:rect(210px,565px,310px,385px);
-}
-
-#Tier3EndImg{
-  clip:rect(440px,320px,575px,85px);
-}
-
-#Tier4EndImg{
-  clip:rect(476px,600px,590px,350px);
-}
-
-#Tier4YesEndReloadImg{
-  clip:rect(200px,630px,255px,550px);
-}
-
-#Donate{
-
- width: 800px;
- height: 600px;
- margin-left: -70px;
- z-index:200;
- margin-top:-300px;
- display:none;
- clip:rect(450px,800px,600px,535px);
-}

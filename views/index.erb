@@ -2,8 +2,11 @@
   <%= @pinion.css_url("/assets/css/index.css") %>
   <%= @pinion.css_url("/assets/css/forms.css") %>
   <%= @pinion.css_url("/assets/css/flowChart.css") %>
-  <%= @pinion.js_url("/assets/js/flowchart.js") %>
+ <!-- <%= @pinion.js_url("/assets/js/flowchart.js") %> -->
+  <%= @pinion.js_url("/assets/js/bannerChatter.js") %>
 <% end %>
+
+
 
 <div id="home">
   <div id="siteSummary">
@@ -52,8 +55,8 @@
     </table>
   </div>
 
-   <%= erb :_flowChart %>
-
+ <%= erb :_bannerChat %>
+  
   <div id="adGrid">
 
     <table>

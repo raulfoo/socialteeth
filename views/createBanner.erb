@@ -1,0 +1,65 @@
+<% content_for :head do %>
+  <%= @pinion.css_url("/assets/css/profile.css") %>
+  <%= @pinion.css_url("/assets/css/forms.css") %>
+  <%= @pinion.css_url("/assets/css/flowChart.css") %>
+<% end %>
+
+<div id="profile">
+  <h2>Create Banner</h2>
+  <div> <%= flash[:preview] %></div>
+  <p><%= flash[:success] %></p>
+
+  <form class="standard" action="/createAd" method="post" enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td></td>
+        <td><%= erb :_flash_errors %></td>
+      </tr>
+      <tr>
+        <td class="label">Name</td>
+        <td class="field"><input type="text" name="name" value="<%= flash[:name] %>" /></td>
+      </tr>
+      <tr>
+        <td class="label">Occupation/About</td>
+        <td class="field"><input type="text" name="occupation" value="<%= flash[:occupation] %>" /></td>
+      </tr>
+      <tr>
+       <tr>
+        <td class="label">Location</td>
+        <td class="field"><input type="text" name="location" value="<%= flash[:location] %>" /></td>
+      </tr>
+       <tr>
+        <td class="label">Message</td>
+        <td class="field"><TEXTAREA ROWS=5 COLS=60 name="message" value="" ><%= flash[:message] %></TEXTAREA>
+</td>
+      </tr>
+       <tr>
+        <td class="label">Image</td>
+        <td class="field"><input type="file" name="image" value="<%= flash[:image] %>" accept="image/*" /></td>
+      </tr>
+      <tr>
+       <td class="label">Image Orientation</td>
+       <td class="field"><input type="radio" name="orientation" value="Left" /> Facing Right
+        <input type="radio" name="orientation" value="Right" /> Facing Left
+      </td>
+      </tr>
+       <tr>
+       <td class="label">Ad</td>
+       <td class="field">
+       <select name="ad">
+        <option value="None">--</option>
+        <option value="Gay Marriage">Gay Marriage</option>
+        <option value="War on Drugs">War on Drugs</option>
+        <option value="Female Media Potrayal">Female Media Potrayal</option>
+        <option value="Fiscal Cliff">Fiscal Cliff</option>
+        <option value="Family Planning">Family Planning</option>
+       </select>
+      </td>
+      </tr>
+        <td></td>
+        <td class="field"><input type="submit" value="Submit Changes" name="submitter"/></td>
+        <td class="field"><input type="submit" value="Preview" name="submitter" /></td>
+      </tr>
+    </table>
+  </form>
+</div>

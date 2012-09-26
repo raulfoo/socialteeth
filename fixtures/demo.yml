@@ -71,3 +71,16 @@ comments:
 
 discussions:
   - title: Adventures of Alice
+  
+  
+chats:
+  - name: "Iago"
+    occupation: >
+      Allosaur
+    location: >
+      Pangea
+    message: > 
+      The population size needs to be controlled!
+    image: "http://youtu.be/YnTPrH-jS48"
+    ad: "public/images/bannerChatter/AllosaurRight.png"
+

@@ -159,7 +159,13 @@ class SocialTeeth < Sinatra::Base
   end
 
   get "/profile" do
+    ensure_signed_in
     erb :profile
+  end
+  
+  get "/createBanner" do
+    ensure_signed_in
+    erb :createBanner
   end
 
   def ensure_signed_in
@@ -177,3 +183,6 @@ class SocialTeeth < Sinatra::Base
 
   def production?() ENV["RACK_ENV"] == "production" end
 end
+
+$global_variable = 1
+

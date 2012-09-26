@@ -46,3 +46,12 @@ if demo_user.discussions.empty?
     Comment.each { |comment| DiscussionComment.create(:discussion_id => discussion.id, :comment_id => comment.id) }
   end
 end
+  
+if demo_user.chats.empty?
+  chats_data = YAML.load_file("fixtures/demo.yml")["chats"]
+  chats_data.each do |chat_data|
+    Chat.create(:user_id => demo_user.id, :name => chat_data["name"],:occupation => chat_data["occupation"],:location => chat_data["location"],:message => chat_data["message"],:image => chat_data["image"],:ad => chat_data["ad"])
+  end
+  
+end
+
