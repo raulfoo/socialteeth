@@ -1,0 +1,93 @@
+<%
+# Parameters:
+#   ad - the ad for which a video will be embedded
+%>
+
+<div class="videoEmbed" >
+  <iframe class="preview" id="player<%=ad.public_id%>" src="<%= ad.video_embed_url %>" height="150" width="240" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+</div>
+<p id="enlarge<%=ad.public_id%>"> <a href="#">Enlarge</a> </p>
+
+
+<script type="text/javascript">
+    $("#enlarge<%=ad.public_id%>").click(function(){ 
+  
+      if($(this).children().html()=="Enlarge"){
+     
+        $("#player<%=ad.public_id%>").css({height: 225, width: 360});
+        $(this).children().html("Minimize");
+      }
+      else{
+  
+        $("#player<%=ad.public_id%>").css({height: 150, width: 240});
+        $(this).children().html("Enlarge");
+      }
+      
+    });
+
+</script>
+<!--
+<img  src="<%= ad.thumbnail_url(:size => 200, :cropped => true) %>" alt="what" width="240" height="150">
+-->
+<!--
+<a href="" class="videoMinimize" style="display:none" onclick="returnSize()">X</a><div id="player<%=ad.public_id%>"></div>
+
+<script src="http://www.youtube.com/player_api"></script>
+
+<script>
+
+    
+  //<%=ad.url[16..-1]%>
+  // $("#player<%=ad.public_id%>").click(function(){ 
+   //alert("<%=ad.url[16..-1]%>");
+ 
+     var player;
+     function onYouTubePlayerAPIReady() {
+        player = new YT.Player('player<%=ad.public_id%>', {
+          height: '150',
+          width: '240',
+          videoId: "0Bmhjf0rKe8",
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+    
+   }
+
+  
+  
+     function onPlayerReady(event) {
+      alert("ready");
+    }
+ 
+    // when video ends
+    function onPlayerStateChange(event) {        
+      
+     if(event.data === 1) {            
+   
+   // $("#player<%=ad.public_id%>").css('width','360');
+   // $("#player<%=ad.public_id%>").css('height','270');
+   // $("#videoMinimize<%=ad.public_id%>").fadeIn();
+     
+        }
+        if(event.data === 0 ||event.data === 2 ) {            
+   
+    //$('#player').css('width','240');
+   // $('#player').css('height','180');
+     
+        }
+    }
+    
+  
+     //});
+     /*
+         function returnSize(){
+      $("#player<%=ad.public_id%>").css('width','240');
+      $("#player<%=ad.public_id%>").css('height','150');
+      $("#videoMinimize<%=ad.public_id%>").fadeOut();
+    }*/
+    
+
+</script>
+-->

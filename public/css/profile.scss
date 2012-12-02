@@ -1,20 +1,184 @@
 @import "css/mixins";
 
-#profile {
-  form.standard {
-    .flashErrors {
-      font-size: 1.0em;
-      margin-bottom: 10px;
+#profileWrapper{
+  /*display: table-row;*/
+  padding-left: 300px;
 
-      li {
-        margin-left: 20px;
-        padding: 3px 0px;
-        color: $highlight;
+
+
+  
+  .updateAdBox{
+    border-bottom-size: 10px;
+    border-bottom-color: $darkGray;
+    border-bottom-style: solid;
+  
+  
+  }
+
+  .profile {
+    display: table-cell;
+    position: relative;
+     padding-left: 100px;
+     padding-top: 50px;
+     bottom: -100px;
+     top: -25px;
+     left: -100px;
+     
+    
+    
+    form.standard {
+    
+      .flashErrors {
+        font-size: 1.0em;
+        margin-bottom: 10px;
+  
+        li {
+          margin-left: 20px;
+          padding: 3px 0px;
+          color: $highlight;
+        }
+      }
+  
+      table {
+        .field { width: 55%; }
       }
     }
-
-    table {
-      .field { width: 55%; }
-    }
+    
+    
   }
 }
+
+form.updatePassword {
+  width: 450px;
+  padding-left: 40px;
+
+  .flashErrors {
+    font-size: 1.0em;
+    margin-bottom: 10px;
+    li {
+      margin-left: 20px;
+      padding: 3px 0px;
+      color: $highlight;
+    }
+  }
+
+  table {
+    width: 100%;
+
+    .label {
+      text-align: right;
+      font-size: 1.2em;
+      padding-right: 10px;
+    }
+
+    .field {
+      width: 50%;
+    }
+  }
+
+  input[type=text], input[type=password] {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid $lightGray;
+    padding: 0px 5px;
+    margin: 5px 0px;
+    font-size: 1.2em;
+  }
+
+  input[type=submit] {
+    @include black-button;
+    width: 200px;
+    margin: 5px 0px;
+    font-family: "Helvetica Neue", Helvetica, "Lucida Sans", Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 1.0em;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    border: 1px solid $lightGray;
+    padding: 5px;
+    font-size: 1.1em;
+    font-family: "Helvetica Neue", Helvetica, "Lucida Sans", Arial, Verdana, sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+.mainAds{
+  padding: 10px;
+  border-bottom-style: solid;
+  border-bottom-color: $darkGray;
+  border-bottom-width:10px;
+  min-width: 600px;
+  width: 600px;
+  
+
+}
+
+.adStats{
+  display: table;
+  border-bottom-size: 10px;
+  border-bottom-color: $darkGray;
+  border-bottom-style: solid;
+
+  .progress{
+    display: table-cell;
+    width: 200px;
+    padding-right: 10px;
+  }
+  .charts{
+     display: table-cell;
+     padding-right: 10px;
+     width: 200px;
+
+     
+     #chart_div{
+      top: -30px;
+      width: 200px;
+      height: 200px
+     
+     }
+  }
+  .schedule{
+     display: table-cell;
+     padding-right: 10px;
+     width: 200px;
+  }
+}
+    
+    
+.personalInfo{
+  display: table;
+
+  .yourImpact{
+    display: table-cell;
+    width: 300px;
+    padding-right: 10px;
+  }
+  .tumbler{
+     display: table-cell;
+     padding-right: 10px;
+     width: 300px;
+  }
+}
+
+#flashMessage{
+   background: #FDFCDC;
+   padding:10px;
+   font-size: 1.3em;
+   margin: 20px;
+   display: none;
+   
+   #closeMessage{
+    float: right;
+    font-size: 2em; 
+   }
+   
+   
+}
+
+
+

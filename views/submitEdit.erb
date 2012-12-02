@@ -3,33 +3,37 @@
   <%= @pinion.css_url("/css/submit.css") %>
 <% end %>
 
-<div class="container">
-  <div id="submitAdEdit">
-    <h2>Launch Your Message</h2>
-    <form id="submitForm" class="standard" action="/submit" method="post" enctype="multipart/form-data">
+<!--<div class="container">-->
+ <!-- <div id="submitAd">  id="submitForm" class="standard"-->
+  <div>
+    <h2>Change Message for: <%=ad.title%></h2>
+    <form id="submitForm" class="standard" action="/submitUpdate" method="post" enctype="multipart/form-data" > <!--enctype="multipart/form-data"-->
       <div><%= erb :_flash_errors %></div>
       <div class="submitField">
         <p>Title</p>
         <p class="hint">(e.g., "Eat Real Food")</p>
-        <input type="text" name="title" value="<%= flash[:title] %>">
+        <input type="text" name="title" value="<%=ad.title%>">
       </div>
       <div class="submitField">
         <p>Description</p>
         <p class="hint">(e.g., "This is an ad about healthy eating, aimed at teenagers. It is in the style of the famous "the truth" anti-smoking campaign.")</p>
-        <textarea name="description"><%= flash[:description] %></textarea>
+        <textarea name="description"><%=ad.description%></textarea>
       </div>
       <div class="submitField">
         <p>About You</span>
         <p class="hint">(e.g., "This ad was created by "Eat Real Food", a community-led initiative that hails from South Bend, Indiana. For more from us, including healthy eating posters created by local youth, please visit our website at eatrealsouthbend.com.")</p>
-        <textarea name="about_submitter"><%= flash[:about_submitter] %></textarea>
+        <textarea name="about_submitter"><%=ad.about_submitter%></textarea>
       </div>
       <div class="submitField">
         <p>YouTube or Vimeo URL</p>
         <p class="hint">(e.g., http://www.youtube.com/watch?v=MHVOZkyI_1Q)</p>
-        <input type="text" name="url" value="<%= flash[:url] %>" />
+        <input type="text" name="url" value="<%=ad.url%>" />
       </div>
+      <input type="hidden" name="id" value="<%= ad.id %>" />
       <p class="aside">By clicking "Submit Ad" you certify that you have the right to distribute this video and that it does not violate Copyright Law.</p>
-      <input type="submit" value="Submit Ad" />
+       <p class="aside">Social Teeth Reserves the Right to Review and Edit Your Changes That Go to the Live Wesbite.</p>
+      
+      <input type="submit" value="Update Ad" />
     </form>
   </div>
-</div>
+<!--</div>-->

@@ -7,6 +7,27 @@
   p { font-size: 1.2em; }
 }
 
+#submitForm {
+position: relative;
+    .hint {
+      display: block;
+      font-size: 0.9em;
+      color: $lightText;
+    }
+
+    .submitField { margin: 20px 0px; }
+
+    input[type=submit] {
+      display: block;
+      margin: 20px auto;
+    }
+
+    .aside {
+      font-size: 0.9em;
+    }
+  }
+
+
 #submitAd {
   #submitForm {
     .hint {

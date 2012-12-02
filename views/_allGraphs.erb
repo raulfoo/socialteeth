@@ -1,0 +1,40 @@
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+<!-- <% paymentProgress= Array.new %>
+    <% cumulativePayment = 0 %>
+    <% payment.each_slice(1) do |slice| %>
+          <% slice.each do |test| %>
+            <%cumulativePayment += (test.amount.to_f/100)%>
+            <%paymentProgress.push cumulativePayment%>
+          <% end %>
+        <% end %>-->
+
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+         ['Date','Donation'],
+        <%cumulativePayment = 0 %>
+        <% payment.each_slice(1) do |slice| %>
+          <% slice.each do |test| %>
+            <%cumulativePayment += (test.amount.to_f/100)%>
+            ['',<%=cumulativePayment%>],
+          <% end %>
+        <% end %>
+      ]);
+
+      var options = {
+        //title: 'Goal Progress',
+        vAxis: {maxValue: <%=ad.goal/100%>},
+        legend: {position: 'in'},
+        backgroundColor: { fill: 'transparent'}
+  
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>

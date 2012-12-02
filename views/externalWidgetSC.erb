@@ -1,0 +1,32 @@
+
+<%= @pinion.css_url("/assets/css/index.css") %>
+<%= @pinion.css_url("/assets/css/forms.css") %>
+<%= @pinion.css_url("/assets/css/details.css") %>
+<%= @pinion.css_url("/assets/css/common.css") %>
+<%= @pinion.css_url("/assets/css/widget.css") %>
+
+<%if defined? id %>
+  <% ad = Ads.find(:public_id => id) %>
+<% else %>
+  <% ad ||= @ads[0] %>
+<% end %>
+
+<div id="home" >
+  <div id="widgetBox">
+     <h1 class="trendingTitle" ><%= ad.title %></h1>
+    
+     <div class="trendingDetails">
+       <div class="trendingVideo"><%= erb :video_embedSmall, :locals => { :ad => ad } %></div>
+       <div class="progressBox">
+        <div class="socialMediaProgress"></div>
+        <%= erb :_paymentProgress, :locals => {:ad => ad} %>
+     
+        <div class="bothButtons">
+          <a id="participateButton" class="button" href="/ads/<%= ad.public_id %>">Participate</a>
+          <a id="donateButton" class="button" href="/ads/<%= ad.public_id %>/contribute">Donate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

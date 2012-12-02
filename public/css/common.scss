@@ -60,16 +60,22 @@ a {
 
 .aside { color: $lightText; }
 
-$headerHeight: 30px;
-$sidebarWidth: 200px;
+$headerHeight: 70px;
+$sidebarWidth: 0px;
+$paddingTop: $headerHeight / 3;
 
 #header {
   height: $headerHeight;
   padding: 0px 30px;
-  min-width: $sidebarWidth + 800px;
+  min-width: $sidebarWidth + 1150px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: $darkGray;
+  border-bottom-width:10px;
+  
 
   #signin {
-    $paddingTop: $headerHeight / 2 - 13;
     float: right;
     height: $headerHeight - $paddingTop;
     padding-top: $paddingTop;
@@ -79,16 +85,67 @@ $sidebarWidth: 200px;
       font-size: 0.9em;
     }
   }
+  
+   .logo {
+    float: left;
+    display: block;
+    width: 200px;
+    height: 100px;
+    background: url(/images/logos/marble200.png) no-repeat;
+    text-indent: -9999px;
+
+    &.graffiti-blue {
+      background: url(/images/logos/graffiti_blue.png) no-repeat;
+      height: 175px;
+    }
+
+    &.graffiti-orange {
+      background: url(/images/logos/graffiti_orange.png) no-repeat;
+      height: 175px;
+    }
+
+    &.bright-cyan {
+      background: url(/images/logos/bright_cyan.png) no-repeat;
+      height: 180px;
+      margin-left: 30px;
+    }
+
+    &.bright-orange{
+      background: url(/images/logos/bright_orange.png) no-repeat;
+      height: 180px;
+      margin-left: 30px;
+    }
+
+    &.bright-indigo {
+      background: url(/images/logos/bright_indigo.png) no-repeat;
+      height: 180px;
+      margin-left: 30px;
+    }
+
+    &.old {
+      background: url(/images/logos/long240x40.png) no-repeat;
+      height: 40px;
+    }
+  }
 }
 
 #sidebar {
-  width: $sidebarWidth;
-  padding-top: $headerHeight;
-  padding-left: $headerHeight;
+  /*display: table-cell;
+  position: relative;
+  padding-top: $headerHeight;*/
+  position: relative;
   float: left;
-  top: 0px;
+  left: -100px;
+  padding-top: 40px;
+  min-height: 100%;
   height: 100%;
+  max-width: 300px;
+  width: 300px;
   background: #FEFFFE;
+  /*border-right-style: solid; 
+  border-right-color: $darkGray; 
+  border-right-style: 5px; */
+  height: 100%;
 
   #socialMedia{
     margin-top: 40px;
@@ -97,9 +154,9 @@ $sidebarWidth: 200px;
 
   .logo {
     display: block;
-    width: $sidebarWidth;
-    height: 100px;
-    background: url(/images/logos/marble200.png) no-repeat;
+    width: $sidebarWidth+300px;
+  /*  height: 100px;*/
+    /*background: url(/images/logos/marble200.png) no-repeat;*/
     text-indent: -9999px;
 
     &.graffiti-blue {
@@ -168,17 +225,19 @@ $sidebarWidth: 200px;
 }
 
 #content {
-  margin-left: $sidebarWidth + $headerHeight;
+  padding-left: 150px;
+  padding-right: 100px;
   padding-bottom: 100px;
-  min-width: 800px;
+  min-width: 900px;
   & > * {
     margin: auto;
-    width: 800px;
+    width: 900px;
   }
-
 }
 
 #wrapper {
+  /*margin-left: 75px;
+  margin-right: 75px;*/
   min-height: 100%;
   position: relative;
 }
@@ -187,6 +246,7 @@ $sidebarWidth: 200px;
   position: absolute;
   height: 20px;
   width: 100%;
+  min-width: 1220px;
   @include linear-gradient(#555, #111);
   bottom: 0px;
   border-top: 1px solid #555;
@@ -233,5 +293,16 @@ blockquote {
   background-color: #FFFFFF;
 }
 
-
+#topNav {
+  padding-left:100px;
+  padding-top: $paddingTop;
+  float:left;
+  
+  li {
+    display: inline;
+    list-style-type: none;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
 

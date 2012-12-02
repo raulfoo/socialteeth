@@ -3,25 +3,24 @@
   <%= @pinion.css_url("/assets/css/forms.css") %>
 <% end %>
 
-<div id="profileWrapper">
-  <div id="sidebar">
-    <div class="nav">
-      <ul>
-        <li> <a href="/profile/home"> Track Your Campaigns </a><li>
-        <li> <a href="/profile/settings"> Modify Account Settings </a></li>
-        <li> <a href="/profile/changeInfo"> Modify Your Campaign Info </a></li>
-      </ul>
-      
-     
-    </div>
+<div id="sidebar">
+  <div class="nav">
+    <ul>
+      <li> <a href="/profile/home"> Track Your Campaigns </a><li>
+      <li> <a href="/profile/settings"> Modify Account Settings </a></li>
+      <li> <a href="/profile/changeInfo"> Modify Your Campaign Info </a></li>
+    </ul>
+    
+   
   </div>
-        
+</div>
+
+<div id="profileWrapper">  
+
   <div id="profile">
-  
     <h2>Account Preferences</h2>
     <p><%= flash[:message] %></p>
-  
-    <form class="standard" action="/profile" method="post">
+    <form class="updatePassword" action="/profile" method="post">
       <table>
         <tr>
           <td></td>
@@ -41,5 +40,7 @@
         </tr>
       </table>
     </form>
+
   </div>
 </div>
+

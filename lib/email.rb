@@ -12,7 +12,7 @@ module Email
        :port => "587",
        :enable_starttls_auto => true,
        :user_name => "contact@socialteeth.org",
-       :password => EMAIL_PASSWORD,
+       :password => "HelpHelpHelp", 
        :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
      },
        :subject => subject, :html_body => body)

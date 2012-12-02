@@ -2,11 +2,27 @@
 
 #details {
   display: table;
-  padding-top: 100px;
+  padding: 40px;
+  border-bottom-style: solid;
+  border-bottom-color: $darkGray;
+  border-bottom-width: 10px;
+  min-width: 900px;
+  margin: auto;
 
   #detailsLeft {
     display: table-cell;
     padding-left: 20px;
+    width: 400px;
+    
+     #submitterDetails {
+          margin-top: 30px;
+          padding: 5px;
+          margin-left: 40px;
+          width: 360px;
+          background: $lightGray;
+          border-top: 1px solid $lightGray;
+        }
+        
     #mainDetails {
 
       #detailsText {
@@ -19,11 +35,6 @@
           padding: 5px 0px;
         }
 
-        #submitterDetails {
-          margin-top: 20px;
-          padding-top: 20px;
-          border-top: 1px solid $lightGray;
-        }
       }
     }
   }
@@ -119,5 +130,129 @@
   #counterCell {
     padding: 4px;
     border: 2px solid #808080;
+  }
+}
+
+.main{
+  padding: 10px;
+  border-bottom-style: solid;
+  border-bottom-color: $darkGray;
+  border-bottom-width:10px;
+  min-width: 900px;
+
+}
+
+.centerAlignText{
+  text-align: center;
+  font-size: 4em;
+}
+
+#whatIsThis{
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+#thumbnailRight{
+  display: table-cell;
+  padding-left: 80px;
+  vertical-align: middle;
+  
+  img{
+    width: 250px;
+    height: 300px;
+  }
+}
+
+#participate{
+  padding: 40px;
+  border-bottom-style: solid;
+  border-bottom-color: $darkGray;
+  border-bottom-width:10px;
+  min-width: 900px;
+
+}
+
+#goalWrapper{
+  display:table;
+  padding-top: 20px;
+  min-width: 900px;
+  width: 900px;
+  
+  .centerAlignTextGoals{
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  #plan{
+    display:table-cell;
+    width: 500px;
+    min-width: 500px;
+  }
+  
+  #goalProgress{
+    display:table-cell;
+    width: 400px;
+    padding-left: 50px;
+   
+    .goalText{
+     padding-left: 80px;
+    } 
+    
+    #orangeText{
+      color: orange;
+    }
+  }
+}
+
+.videoWrapper{
+  text-align: center;
+  margin: auto;
+}
+
+.centeredDeets{
+  margin: auto;
+  margin-left: 80px;
+  padding-top: 20px;
+}
+
+.sliderInstance{
+  position: relative;
+  text-align: center;
+  margin: auto;
+  display: table-cell;
+}
+
+.sliderMain{
+  text-align: center;
+  margin: auto;
+  max-width: 900px;
+  width: 100%;
+  display: table;
+
+}
+
+.sliderArrow{
+  vertical-align: middle;
+  font-size: 3em;
+ /* display: table-cell;*/
+  visibility: hidden;
+
+}
+.slideTableWrap{
+  display: table;
+  width: 100%;
+  
+  #leftArrow{
+  display: table-cell;
+  position: relative;
+  right: 50px;  
+  }
+  
+  
+  #rightArrow{
+  display: table-cell;
+  position: relative;
+  left: 50px;
+  
   }
 }

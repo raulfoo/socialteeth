@@ -4,11 +4,13 @@
 %>
 
 <% content_for :head do %>
+  <%= @pinion.css_url("/assets/css/index.css") %>
   <%= @pinion.css_url("/assets/css/details.css") %>
   <%= @pinion.css_url("/assets/css/forms.css") %>
   <%= @pinion.css_url("/assets/css/tabs.css") %>
   <%= @pinion.js_url("/assets/js/tabs.js") %>
-
+  <%= @pinion.js_url("/assets/js/sliderControl.js") %>
+  
   <meta property="og:title" content="<%= ad.title %>" />
   <meta property="og:type" content="website"/>
   <meta property="og:description" content="Support this ad on Social Teeth!" />
@@ -17,67 +19,49 @@
   <meta property="fb:app_id" content="522481364436011" />  
 <% end %>
 
-<div id="details">
-  <div id="detailsLeft">
-    <div class="videoWrapper"><%= erb :video_embed, :locals => { :ad => ad } %></div>
-    <div id="mainDetails">
-      <% if production? && ad.id == 10 %>
-        <h4>This ad will begin accepting contributions in October.</h4>
-      <% end %>
-
-      <div id="customDetailsText">
-        <p><%= ad[:call_to_action] %></p>
-      </div>
-      <div id="tabs">
-        <ul id="tabTitle">
-          <li class="tabHeaders"><a href="#detailsText">Ad Details</a></li>
-          <li class="tabHeaders"><a href="#submitterDetails">Submitter Details</a></li>
-          <li class="tabHeaders"><a href="#mediaPlan">Media Strategy</a></li>
-        </ul>
-
-        <div id="detailsText">
-          <h3><%= ad.title %></h3>
-          <p><%= ad.description %></p>
-        </div>
-        <div id="submitterDetails">
-          <h3>Submitter Details</h3>
-          <p><%= ad.about_submitter %></p>
-        </div>
-        <% unless ad.media_plan.nil? %>
-        <div id="mediaPlan">
-          <h3>Media Strategy</h3>
-          <p><%= ad.media_plan %></p>
-        </div>
-        <% end %>
-
-      </div>
+<div id="home">
+  <div class="main">
+   <p class="centerAlignText"><%=ad.title%></p>
+    <div class="videoWrapper"><%= erb :video_embedLarge, :locals => { :ad => ad } %></div>
+    <div class="centeredDeets"><%= erb :mediumWidget, :locals => { :ad => ad } %></div>
+    <%= erb :_adSlider, :locals => { :ad => ad, :numberTiles => 3 } %> 
+  </div>
+  
+  <p id="whatIsThis" class="centerAlignText">WHAT IS THIS?</p>
+  <div id="details">
+    <div id="detailsLeft">
+      <%=ad.description%>
+      <div id="submitterDetails">
+        <%=ad.about_submitter%>
+      </div> 
+    </div>
+    <div id="thumbnailRight">
+     <img src="<%= ad.thumbnail_url(:size => 200, :cropped => false) %>" alt="<%= ad.title %>"/>
+  
+ 
     </div>
   </div>
-  <% if !(production? && ad.id == 10) # Exhale %>
-    <div id="detailsGutter">
-      <div class="summary">
-        <div class="goalProgress">
-          <h4> Help us reach our <%= ad.goal.to_currency %> goal! </h4>
-          <table id="counter">
-            <tr id="counterRow">
-              <% ad.payment_progress.to_currency.each_char do |c|%>
-                <td id="counterCell"><%= c %></td>
-              <% end %>
-            </tr>
-          </table>
-        </div>
-        <p>This ad will be open for contributions until <%= ad.deadline.strftime("%B %d") %>.</p>
-        <a id="payButton" class="button" href="/ads/<%= ad.public_id %>/contribute">Contribute Now!</a>
-        <div id="goalDisclaimer">
-          <p class="aside">The current goals are estimates provided by our media partner. They may be refined as the media plan for this ad is finalized.</p>
-        </div>
-        <div id="socialMedia">
-          <%= erb :_social_media_ad_specific %>
-        </div>
-      </div>
+  
+  <div id="participate">
+     <p class="centerAlignText">HOW YOU CAN PARTICIPATE</p>
+  </div>
+  
+  <div id="goalWrapper">
+    <div id="plan">
+       <p class="centerAlignTextGoals">CAMPAIGN GOALS & PLANS</p>
+    
     </div>
-  <% end %>
-
+    <div id = "goalProgress">
+      <p class="centerAlignTextGoals">PROGRESS</p>
+      <h3 class="goalText"><%=((ad.payment_progress.to_f/ad.goal.to_f)*100).round%>% toward 1st goal</h3>
+      <h5 id="orangeText" class="goalText"><%=ad.payment_progress.to_currency %> of <%=ad.goal.to_currency%> for ad buy</h5>
+      <%= erb :_allGraphs, :locals => { :ad => ad, :payment => payment } %>
+      <div id="chart_div" style="width: 500px; height: 300px;"></div>
+    </div>
+  
+  
+  </div>
+  
 </div>
 
 

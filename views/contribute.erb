@@ -5,6 +5,13 @@
   <script type="text/javascript" src="<%= @pinion.asset_url("/js/contribute.js") %>"></script>
 <% end %>
 
+<div id="contributeHeadingBox">
+  <h1> GET THE WORD OUT. </h1>
+  <div id="vidTable">
+    <div id="contributeSmallVid"><%= erb :video_embedSmall, :locals => { :ad => ad } %></div>
+    <div id ="whatItMeans"> Every five dollars puts 50 to 500 more eyes on this message, which means 50 to 500 more ways to make a change. Get this message heard by more people and make a real impact</div>
+  </div>
+</div>
 <div id="contributeWrapper">
   <div id="contribute">
     <input type="hidden" id="stripePublicKey" value="<%= STRIPE_PUBLIC_KEY %>" />
@@ -62,11 +69,11 @@
           <td class="label">Contribution Amount<br/><span class="hint">(USD)</span></td>
           <td class="field" id="amountOptions">
             <input id="amount10" type="radio" name="dollar_amount" value="10" checked="checked" />
-            <label for="amount10">$10.00</label><br />
+            <label for="amount10">$10.00</label><span> - Reaches 50-500 People</span><br />
             <input id="amount25" type="radio" name="dollar_amount" value="25" />
-            <label for="amount25">$25.00</label><br />
+            <label for="amount25">$25.00</label><span> - Reaches 20-2000 People</span><br />
             <input id="amount50" type="radio" name="dollar_amount" value="50" />
-            <label for="amount50">$50.00</label><br />
+            <label for="amount50">$50.00</label><span> - Reaches 1000-10,000 People</span><br />
             <input id="amountCustom" type="radio" name="dollar_amount" value="custom" />
             <label>Custom</label><br />
             <input type="text" class="customAmount" name="custom_amount" size="4" />
@@ -134,13 +141,22 @@
   
   <div id="moreInfo">
     <div id="contributeAdInfo">
-      <b><%= ad.title %></b>
+    <!--  <b><%= ad.title %></b>
       <table id="imageCaption">
        <tr>
           <img id="contributeThumbnail" src="<%= ad.thumbnail_url(:size => 200, :cropped => true) %>" alt="ad thumbnail"><br>
        </tr>
       </table>
       <%= ad.media_plan %>
+    </div>-->
+    
+      <div id = "goalProgress">
+        <p class="centerAlignTextGoals">THE IMPACT OF CONTRIBUTIONS</p>
+        <h3 class="goalText"><%=((ad.payment_progress.to_f/ad.goal.to_f)*100).round%>% toward 1st goal</h3>
+        <h5 id="orangeText" class="goalText"><%=ad.payment_progress.to_currency %> of <%=ad.goal.to_currency%> for ad buy</h5>
+        <%= erb :_allGraphs, :locals => { :ad => ad, :payment => payment } %> 
+        <div id="chart_div" style="width: 350px; height: 200px;"></div>
+      </div>
     </div>
   
     <div id="creditPics">

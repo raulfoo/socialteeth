@@ -23,7 +23,7 @@ class SocialTeeth < Sinatra::Base
       self.current_user =
           User.create(:name => params[:name], :email => params[:email], :password => params[:password],
                       :votes => 100)
-      redirect params[:redirect] ? params[:redirect] : "/"
+      redirect params[:redirect] ? params[:redirect] : "/profile/home/firstlogin"
     else
       flash[:errors] = errors
       redirect "/signin?action=signup"
@@ -78,7 +78,7 @@ class SocialTeeth < Sinatra::Base
     requested_user = User.find(:email => params[:email])
     if requested_user && requested_user.password == params[:password]
       self.current_user = requested_user
-      redirect params[:redirect] ? params[:redirect] : "/"
+      redirect params[:redirect] ? params[:redirect] : "/profile/home"
     else
       errors << "Invalid login." if errors.empty?
       flash[:errors] = errors

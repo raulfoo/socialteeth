@@ -1,0 +1,82 @@
+<% content_for :head do %>
+ 
+  <%= @pinion.css_url("/assets/css/profile.css") %>
+  <%= @pinion.css_url("/assets/css/forms.css") %>
+  <%= @pinion.css_url("/assets/css/details.css") %>
+  <%= @pinion.css_url("/assets/css/index.css") %>
+<% end %>
+
+
+ <div id="sidebar">
+    <div class="nav">
+      <ul>
+        <li> <a href="/profile/home"> Track Your Campaigns </a><li>
+        <li> <a href="/profile/settings"> Modify Account Settings </a></li>
+        <li> <a href="/profile/changeInfo"> Modify Your Campaign Info </a></li>
+      </ul>
+      
+     
+    </div>
+  </div>
+<div id="profileWrapper">  
+
+        
+  <div id="profile">
+    <div class="mainAds" id="myCampaigns">
+      <h2>Your Campaigns</h2>
+      <p id="flashMessage"><%= flash[:message] %></p>
+      <p>  <%=flash[:additionalInfo] %></p>
+      <%= erb :_adSliderProfile, :locals => {:ad => ad_tiles, :numberTiles => 2, :myCampaign => true } %> 
+    </div>
+   <!-- <div class="mainAds" id="otherCampaigns" style="display:none">
+      <h2>Other Current Campaigns</h2>
+      <p id="flashMessage"><%= flash[:message] %></p>
+      <p>  <%=flash[:additionalInfo] %></p>
+      <%#= erb :_adSlider, :locals => {:ad => other_ads, :numberTiles => 2, :myCampaign => true } %> 
+
+    </div>
+    <p id="switcher"><a href="#">Switch</a></p>-->
+    <!--<div class="mainAds">
+      <h2>All Campaigns</h2>
+    
+      <%#=  erb :_adSlider, :locals => {:ad => allAds, :numberTiles => 2, :myCampaign => false} %> 
+    </div>-->
+
+ <%if !ad.kind_of?(Array) & defined? payment %> 
+  <h2><%= ad.title %> </h2>
+  <div class ="adStats">
+    <div class="progress">
+    <h2> PROGRESS </h2>
+    <%= erb :_paymentProgress, :locals => {:ad => ad} %>
+  
+    </div>
+    <div class="charts">
+      <h2> CHARTS </h2>
+       <%= erb :_allGraphs, :locals => { :ad => ad, :payment => payment } %>
+        <div id="chart_div" ></div>
+    </div>
+    <div class="schedule">
+      <h2> SCHEDULE </h2>
+    </div>
+  </div>
+  
+  
+  <div class="personalInfo">
+    <div class="yourImpact">
+      <h2> YOUR IMPACT </h2>
+      <ul>
+        <li><h4> You donated   <%= user_contribution.to_currency %></h4></li>
+        <li>Sign the petition ></li>
+        <li>Write a blog article ></li>
+      </ul>
+    </div>
+    <div class="tumbler">
+      <h2> PARTICIPATE ON TUMBLR</h2>
+    </div>
+  </div>
+  
+  
+ <% end %>
+  </div>
+  
+</div>

@@ -1,0 +1,18 @@
+<% content_for :head do %>
+  <%= @pinion.css_url("/assets/css/widgets.css") %>
+
+<% end %>
+
+<% ad ||= @ads[0] %>
+
+<div class="embedDisplay">
+  <h2> Widget Preview </h2>
+  <div class="widgetPreview">
+    <%= erb :externalWidgetSC, :locals=> { :ad=> ad} %>
+  </div>
+  <h2> Embed Code </h2>
+  <h5>(Paste this code inside the body tag of your blog or webpage)</h5>
+  <div class="widgetCode">
+    <textarea row=5 cols=88><iframe src="https://socialteeth.org/externalWidgetSC/<%= ad.public_id %>" width = 100% height=400></iframe></textarea>
+  </div>
+</div>

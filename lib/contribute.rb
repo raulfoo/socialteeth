@@ -5,7 +5,8 @@ class SocialTeeth < Sinatra::Base
 
   get "/ads/:id/contribute" do
     halt 404 unless ad = Ad.find(:public_id => params[:id])
-    erb :contribute, :locals => { :ad => ad }
+    payment = Payment.select(:amount, :created_at).where(:ad_id => ad.id).order(:created_at)
+    erb :contribute, :locals => { :ad => ad, :payment => payment}
   end
 
   get "/ads/:id/contribute_confirm" do
@@ -58,7 +59,7 @@ class SocialTeeth < Sinatra::Base
     halt 404 unless ad = Ad.find(:public_id => params[:id])
     
    
-    erb :contribute_success, :locals => { :ad => ad }
+    erb :contribute_success, :locals => { :ad => ad, :email => params[:email] }
   end
 
   post "/ads/:id/contribute_submit" do
@@ -97,6 +98,6 @@ class SocialTeeth < Sinatra::Base
     Their ad will be on air once the total fundraising goal is reached 
     - so tell your friends! <br /><br /> You are the best,<br />Social Teeth"
     send_email(params[:email],"Social Teeth Contribution Confirmation", body)
-    redirect "/ads/#{ad.public_id}/contribute_success"
+    redirect "/ads/#{ad.public_id}/contribute_success?email=#{params[:email]}"
   end
 end

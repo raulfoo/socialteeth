@@ -1,33 +1,80 @@
 <% content_for :head do %>
   <%= @pinion.css_url("/assets/css/contribute.css") %>
+  <%= @pinion.css_url("/assets/css/forms.css") %>
 
 <% end %>
 
-<div class="container">
+<!--<div class="container">-->
+
   <div id="contributeSuccess">
-    <h3>Contribution Complete</h3>
-    <p>Thank you for contributing to "<%= ad.title %>"!</p>
-    <div class="socialSharing">
-      <table>
-        <tr>
-          <% share_url = "#{request.scheme}://#{request.host_with_port}/ads/#{ad.public_id}" %>
-          <td><%= erb :"social/twitter_tweet_ad", :locals => { :url => share_url } %></td>
-          <td>
-            <%= erb :"social/facebook_like_ad", :locals => { :url => share_url } %>
-          </td>
-        </tr>
-      </table>
+    <div id="topBox">
+      <h1>THANKS FOR YOUR CONTRIBUTION!</h1>
+      <div id="subBox">
+          <div id="contributeSmallVid"><%= erb :video_embedSmall, :locals => { :ad => ad } %></div>
+          <div id="rightBox">
+            <p> Spread the word about this message! </p>
+             <div class="socialSharing">
+              <table>
+                <tr>
+                  <% share_url = "#{request.scheme}://#{request.host_with_port}/ads/#{ad.public_id}" %>
+                  <td><%= erb :"social/twitter_tweet_ad", :locals => { :url => share_url } %></td>
+                  <td>
+                    <%= erb :"social/facebook_like_ad", :locals => { :url => share_url } %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="sharing">
+              <a class="button" href="#">Share</a>
+              <a class="button" href="/widgets/embed/<%=ad.public_id%>">Embed</a>
+              <a class="button" href="#">View Impact</a>
+            </div>
+          
+          </div>
+      
+      </div
     </div>
-    <% if !current_user %>
+   </div> 
+    <% if !current_user && defined?(User.where(:email => email)).nil?%>
+      <h1>JOIN THE MOVEMENT!</h1>
       <p>New User? Want to stay in the loop and save time?</p>
-      <div><a class="button" href="/signin">Sign up!</a></div>
+     <!--<div><a class="button" href="/signin">Sign up!</a></div>-->
+      
+       <form class="standard" action="/signup?redirect=profile/home/firstlogin" method="post">
+        <table id="centerTable">
+          <tr>
+            <td></td>
+            <td>
+              <% if params[:action] == "signup" %>
+                <%= erb :_flash_errors %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Full name</td>
+            <td class="field"><input type="text" name="name" value="<%= flash[:name] %>"/></td>
+          </tr>
+          <tr>
+            <td class="label">Email</td>
+            <td class="field"><input type="text" name="email" value="<%= email %>"/></td>
+          </tr>
+          <tr>
+            <td class="label">Password</td>
+            <td class="field"><input type="password" name="password" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="field"><input type="submit" value="Create an Account" /></td>
+          </tr>
+        </table>
+      </form>
+        <a class="button" href="/ads/<%= ad.public_id %>">Return to ad</a>
     <% else %>
       <a class="button" href="/ads/<%= ad.public_id %>">Return to ad</a>
     <% end %>
   </div>
 
-
-</div>
+<!--</div>-->
 
 
 

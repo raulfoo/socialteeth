@@ -1,0 +1,49 @@
+<%= @pinion.js_url("/assets/js/sliderControlProfile.js") %>
+
+<div class="slideTableWrap">
+  <a class="sliderArrow" id="leftArrow" onclick='previous()'><-</a>
+  
+  <%#if myCampaign == false %> 
+  <%#else %>
+    <div class=sliderMain id="sliderMainProfile" name="<%=numberTiles%>">
+  <%#end%>
+  
+  <% arrayCount = 0 %>
+  <%#if ad.kind_of?(Array) %>  
+    <% ad.each do |adSlide| %>
+      <div class="library" id="tempslide<%=adSlide.id%>" style="display:none"> 
+        <a href="/profile/home/<%= adSlide.public_id %>">
+          <img src="<%=adSlide.thumbnail_url(:size => 200, :cropped => true)%>" alt="whatever">
+        </a>
+      </div>
+      <div class="sliderInstance" id="divWrap<%=arrayCount%>">
+        <a href="/profile/home/<%= adSlide.public_id %>">
+         <img id="slide<%=adSlide.id%>" style="display:none" src="<%=adSlide.thumbnail_url(:size => 200, :cropped => true)%>" alt="whatever">
+       </a>
+      </div>
+      <% arrayCount += 1 %>
+    <% end %>
+  <!--
+  <% #else %>
+  <% #@ads.delete_if { |adSlide| adSlide.id == 10 } if production? # Exhale %>
+      <% #@ads.each_slice(1) do |slice| %>
+          <% #slice.each do |adSlide| %>
+          
+              <div class="library" id="tempslide<%#=adSlide.id%>" style="display:none"> 
+                <a href="/profile/home/<%#= adSlide.public_id %>">
+                  <img src="<%#=adSlide.thumbnail_url(:size => 200, :cropped => true)%>" alt="whatever">
+                </a>
+              </div>
+              <div class="sliderInstance" id="divWrap<%#=arrayCount%>">
+                <a href="/profile/home/<%#= adSlide.public_id %>">
+                 <img id="slide<%#=adSlide.id%>" style="display:none" src="<%#=adSlide.thumbnail_url(:size => 200, :cropped => true)%>" alt="whatever">
+               </a>
+              </div>
+            <%# arrayCount += 1 %>
+          <% #end %>
+      <%# end %>
+     <% #end %> 
+     -->
+  </div>
+  <a class="sliderArrow" id="rightArrow" onclick='next()'>-></a>
+</div>

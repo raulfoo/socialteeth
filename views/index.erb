@@ -1,23 +1,68 @@
 <% content_for :head do %>
   <%= @pinion.css_url("/assets/css/index.css") %>
   <%= @pinion.css_url("/assets/css/forms.css") %>
+  <%= @pinion.css_url("/assets/css/details.css") %>
   <%= @pinion.css_url("/assets/css/flowChart.css") %>
   <%= @pinion.js_url("/assets/js/flowchart.js") %>
+  <%= @pinion.js_url("/assets/js/trendingCampaigns.js") %>
   <%= @pinion.js_url("/assets/js/twitterFeedPosition.js") %>
 <% end %>
 
-<div id="home">
+<div id="home"> 
 
-
-  <div id="siteSummary">
-    <p>These messages were made by normal people and grassroots organizations.</p>
-    <p>Watch them.</p>
-    <p>If you like a message, help us buy airtime for it.</p>
-
-    <div id="homeVideo">
-      <iframe width="560" height="315" src="http://www.youtube.com/embed/MHVOZkyI_1Q" frameborder="0" allowfullscreen></iframe>
+  <div id="featuredAd">
+   <span> TRENDING CAMPAIGN </span>
+    <% @ads.each_slice(1) do |slice| %>
+      <% slice.each do |ad| %>
+      <%# ad=@ads[0]%>
+     <div class ="allAdsTopBox">
+     <h1 class="trendingTitle" ><a href="/ads/<%= ad.public_id %>"><%= ad.title %> </a> <a class="nextAd"> -> </a></h1>
+    
+     <div class="trendingDetails">
+       <div class="trendingVideo"><%= erb :video_embedSmall, :locals => { :ad => ad } %></div>
+       <div class = "trendingDescription">
+        <%= ad.call_to_action %>
+        <div class = "trendingAboutSubmit">
+          <%= ad.about_submitter %>
+        </div>
+       </div>
+       <div class="progressBox">
+        <div class="socialMediaProgress"></div>
+        <%= erb :_paymentProgress, :locals => {:ad => ad} %>
+     
+        <div class="bothButtons">
+          <a id="participateButton" class="button" href="/ads/<%= ad.public_id %>">Participate</a>
+          <a id="donateButton" class="button" href="/ads/<%= ad.public_id %>/contribute">Donate</a>
+        </div>
+     </div>
+      </div>
     </div>
+    <% end %>
+    <% end %>
+ </div>
 
+ <div id="siteSummary">
+    <span> WHAT DOES SOCIAL TEETH DO? </span>
+    <h1> WE HELP GRASSROOTS CAMPAIGNS GET THE EXPOSURE THEY NEED </h1>
+    
+    <div class="trendingDetails">
+      <div class="trendingVideo">
+        <div class="videoEmbed">
+         <iframe class="preview" id="aboutSTVid" width="240" height="150" src="http://www.youtube.com/embed/MHVOZkyI_1Q" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+        </div>
+        <div id="enlargeAbout"><a href="#">Enlarge</a></div>
+       </div>
+       <div class = "trendingDescription">
+          <p>We help regular people and grassroots organizations give their messages a global reach. If you like a message, help us buy airtime for it.</p>
+        <div class = "trendingAboutSubmit">
+          <a href="/about">How it Works</a>
+        </div>
+       </div>
+       <div class="progressBox">
+        <p> Latest from the blogs: </p>
+       </div>
+      </div>
+   
    <table id="pressLogos">
       <tr>
         <td>
@@ -38,8 +83,6 @@
             <img src="/images/press/guardian.png" alt="guardian" />
           </a>
         </td>
-      </tr>
-      <tr>
         <td>
           <a href="http://www.wired.co.uk/news/archive/2012-07/05/social-teeth"
              target="_blank">
@@ -61,33 +104,35 @@
       </tr>
     </table>
   </div>
-
-
-
-  <div id="adGrid">
-    <table>
-      <% @ads.delete_if { |ad| ad.id == 10 } if production? # Exhale %>
-      <% @ads.each_slice(1) do |slice| %>
-        <tr>
-          <% slice.each do |ad| %>
-            <td>
-              <a href="/ads/<%= ad.public_id %>">
-                <img src="<%= ad.thumbnail_url(:size => 200, :cropped => true) %>" />
-              </a>
-              <div class="adMetadata">
-                <p class="title"><a href="/ads/<%= ad.public_id %>"><%= ad.title %></a></p>
-                <p class="callToAction"><%= ad.call_to_action %></p>
-                <p class="amount">
-                  <span class="progress"><%= ad.payment_progress.to_currency %></span>
-                  <span> of <%= ad.goal.to_currency %> goal</span>
-                </p>
-              </div>
-            </td>
-          <% end %>
+  
+  <a name="watch"></a>
+  <div id="currentCampaigns">
+    <span> THIS MONTH'S CAMPAIGNS </span>
+    <div id="adGrid">
+      <table>
+       <tr>
+        <% arrayCount = 0 %>
+        <% @ads.delete_if { |ad| ad.id == 10 } if production? # Exhale %>
+        <% @ads.each_slice(1) do |slice| %>
+            <% slice.each do |ad| %>
+              <td>
+                <div><%= erb :widgetModule, :locals => { :ad => ad }%></div>
+               
+              </td>
+              <% arrayCount += 1 %>
+              <% if arrayCount % 3 == 0 %>
+                </tr><tr>
+              <% end %>
+            <% end %>
+        <% end %>
         </tr>
-      <% end %>
-    </table>
+      </table>
+    </div>
   </div>
+
+
+ 
+  
 </div>
 
-<%= erb :"social/twitter_feed" %>
+<!--<%= erb :"social/twitter_feed" %>-->

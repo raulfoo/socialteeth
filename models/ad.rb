@@ -41,4 +41,5 @@ class Ad < Sequel::Model
   def payment_progress
     payments_dataset.filter(:refunded => false).map(&:amount).inject(:+) || 0
   end
+  
 end

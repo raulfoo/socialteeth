@@ -1,0 +1,7 @@
+ <div class="paymentProgress">
+        <span> <span class="highlightProgress"><%= ad.payment_progress.to_currency %></span> of <%= ad.goal.to_currency %> goal </span>
+        <p class="smallFont"> <span class="highlightProgress"> <%= (ad.deadline.to_date-Date.today).to_i %> days left</span> for funding</p>
+        <div class="progressBarUnderlay">
+          <div class="progressBarOverlay" style="width:<%=[(ad.payment_progress.to_f/ad.goal.to_f)*100,100].min %>%"></div>
+        </div>
+      </div>

@@ -55,7 +55,7 @@
   </div>
 
   <div class="authenticationForm">
-    <form class="standard" action="/signup?redirect=<%= params[:redirect] %>" method="post">
+    <form class="standard" action="/signup?redirect=profile/home/firstlogin" method="post">
       <table>
         <tr>
           <td></td>
@@ -69,6 +69,7 @@
             <% end %>
           </td>
         </tr>
+        <tr>
           <td class="label">Full name</td>
           <td class="field"><input type="text" name="name" value="<%= flash[:name] %>"/></td>
         </tr>

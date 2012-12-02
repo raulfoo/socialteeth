@@ -1,0 +1,17 @@
+<div class="trendingDetails">
+  <div class = "trendingDescription">
+    <%= ad.call_to_action %>
+    <div class = "trendingAboutSubmit">
+      <%= ad.about_submitter %>
+    </div>
+  </div>
+
+  <div class="progressBox">
+    <div class="socialMediaProgress"></div>
+    <%= erb :_paymentProgress, :locals => {:ad => ad} %>
+    <div class="bothButtons">
+      <a id="participateButton" class="button" href="/ads/<%= ad.public_id %>">Participate</a>
+      <a id="donateButton" class="button" href="/ads/<%= ad.public_id %>/contribute">Donate</a>
+    </div>
+  </div>
+</div>

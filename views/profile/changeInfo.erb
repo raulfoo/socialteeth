@@ -1,0 +1,39 @@
+<% content_for :head do %>
+  <%= @pinion.css_url("/assets/css/profile.css") %>
+  <%= @pinion.css_url("/assets/css/forms.css") %>
+<% end %>
+
+
+
+
+ <div id="sidebar">
+    <div class="nav">
+      <ul>
+        <li> <a href="/profile/home"> Track Your Campaigns </a><li>
+        <li> <a href="/profile/settings"> Modify Account Settings </a></li>
+        <li> <a href="/profile/changeInfo"> Modify Your Campaign Info </a></li>
+      </ul>
+      
+     
+    </div>
+  </div>
+<div id="profileWrapper">  
+
+  <p><%=flash[:message] %></p>
+  <div class="profile">
+    <h2>Your Ads</h2>
+    <%if !ad.empty? %>
+     <%if ad.kind_of?(Array) %>    
+      <div class="updateAdBox" ><%= erb :submitEdit, :locals => { :ad => ad }%></div>
+     <% else %>
+      <% ad.each do |adSlice| %>
+       <div class="updateAdBox"><%= erb :submitEdit, :locals => { :ad => adSlice }%></div>
+      <% end %> 
+     <% end %>
+    <% else %>
+      <h5> You currently don't have ownership privileges over any live campaigns </h5>
+    <% end %>
+  
+    
+  </div>
+</div>

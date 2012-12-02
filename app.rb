@@ -56,7 +56,8 @@ class SocialTeeth < Sinatra::Base
 
   get "/ads/:id" do
     halt 404 unless ad = Ad.find(:public_id => params[:id])
-    erb :details, :locals => { :ad => ad }
+    payment = Payment.select(:amount, :created_at).where(:ad_id => ad.id).order(:created_at)
+    erb :details, :locals => { :ad => ad, :payment => payment }
   end
 
   post "/vote/:id" do
@@ -141,7 +142,9 @@ class SocialTeeth < Sinatra::Base
       redirect "/submit"
     end
   end
-
+  
+  
+  
   get "/submit_complete" do
     erb :submit_complete
   end
@@ -157,10 +160,69 @@ class SocialTeeth < Sinatra::Base
   get "/faq" do
     erb :faq
   end
-
-  get "/profile" do
+  
+  get "/profile/home" do
     ensure_signed_in
-    erb :profile
+    ad = current_user.my_campaigns
+    other = current_user.other_campaigns
+    
+    if (defined?(ad)).nil?
+     ad= Ad.all
+     flash[:message] = "You have yet to contribute to an add, below are the available causes! <a href='#' id='closeMessage' name='showMessage'> x </a>"
+    end
+    erb :"profile/home", :locals => {:ad_tiles => ad, :ad => false, :other_ads => other }
+  end
+  
+   get "/profile/home/firstlogin" do
+    ensure_signed_in
+    ad = current_user.my_campaigns
+    other = current_user.other_campaigns
+    flash[:message] = "You're in. Thanks for registering. <a href='#' id='closeMessage' name='showMessage'> x </a>"
+    if (defined?(ad)).nil?
+      ad= Ad.all
+      flash[:additionalInfo] = "You currently have not joined any campaigns. Below is a selection of all available campaigns"
+    end
+   erb :"profile/home", :locals => {:ad_tiles => ad, :ad => false, :other_ads => other }
+  end
+  
+  get "/profile/home/:id" do
+    ensure_signed_in
+    halt 404 unless this_ad = Ad.find(:public_id => params[:id])
+    ad = current_user.my_campaigns
+    other = current_user.other_campaigns
+    user_contribution = Payment.where(:email => current_user.email, :ad_id => this_ad.id).sum(:amount)
+    payment = Payment.select(:amount, :created_at).where(:ad_id => this_ad.id).order(:created_at)
+    erb :"profile/home", :locals => { :ad => this_ad, :ad_tiles => ad, :payment => payment, :user_contribution => user_contribution, :other_ads => other }
+  end
+  
+  get "/profile/settings" do
+    ensure_signed_in
+    erb :"profile/settings"
+  end
+  
+  get "/profile/changeInfo" do
+    ensure_signed_in
+    ad = Ad.where(:user_id => current_user.id)
+    erb :"profile/changeInfo", :locals => {:ad => ad }
+  end
+  
+  get "/widgets/embed" do
+   #ad = Ad.where(:user_id => current_user.id)
+    erb :"widgets/embed"
+  end
+  
+   get "/widgets/embed/:id" do
+    halt 404 unless ad = Ad.find(:public_id => params[:id])
+    erb :"widgets/embed", :locals => { :ad => ad }
+  end
+  
+  get "/externalWidgetSC" do
+    erb :externalWidgetSC, :layout=> false
+  end
+
+  get "/externalWidgetSC/:id" do
+    halt 404 unless ad = Ad.find(:public_id => params[:id])
+    erb :externalWidgetSC,  :locals => { :ad => ad }, :layout=> false
   end
 
   def ensure_signed_in
