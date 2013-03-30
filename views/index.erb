@@ -1,9 +1,9 @@
 <% content_for :head do %>
   <%= @pinion.css_url("/assets/css/index.css") %>
   <%= @pinion.css_url("/assets/css/forms.css") %>
-  <%= @pinion.css_url("/assets/css/flowChart.css") %>
-  <%= @pinion.js_url("/assets/js/flowchart.js") %>
-  <%= @pinion.js_url("/assets/js/twitterFeedPosition.js") %>
+  <%#= @pinion.css_url("/assets/css/flowChart.css") %>
+  <%#= @pinion.js_url("/assets/js/flowchart.js") %>
+  <%#= @pinion.js_url("/assets/js/twitterFeedPosition.js") %>
 <% end %>
 
 <div id="home">
@@ -77,10 +77,10 @@
               <div class="adMetadata">
                 <p class="title"><a href="/ads/<%= ad.public_id %>"><%= ad.title %></a></p>
                 <p class="callToAction"><%= ad.call_to_action %></p>
-                <p class="amount">
-                  <span class="progress"><%= ad.payment_progress.to_currency %></span>
-                  <span> of <%= ad.goal.to_currency %> goal</span>
-                </p>
+                <!--<p class="amount">
+                  <span class="progress"><%#= ad.payment_progress.to_currency %></span>
+                  <span> of <%#= ad.goal.to_currency %> goal</span>
+                </p>-->
               </div>
             </td>
           <% end %>
@@ -90,4 +90,4 @@
   </div>
 </div>
 
-<%= erb :"social/twitter_feed" %>
+<%#= erb :"social/twitter_feed" %>

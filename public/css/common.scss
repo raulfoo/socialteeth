@@ -67,6 +67,7 @@ $sidebarWidth: 200px;
   height: $headerHeight;
   padding: 0px 30px;
   min-width: $sidebarWidth + 800px;
+  min-height: 100px;
 
   #signin {
     $paddingTop: $headerHeight / 2 - 13;
@@ -168,9 +169,10 @@ $sidebarWidth: 200px;
 }
 
 #content {
-  margin-left: $sidebarWidth + $headerHeight;
+  /*margin-left: $sidebarWidth + $headerHeight;*/
   padding-bottom: 100px;
   min-width: 800px;
+  padding-left: $sidebarWidth + $headerHeight;
   & > * {
     margin: auto;
     width: 800px;
@@ -184,9 +186,9 @@ $sidebarWidth: 200px;
 }
 
 #footer {
-  position: absolute;
   height: 20px;
-  width: 100%;
+  min-width: 100%;
+  bottom: 0%;
   @include linear-gradient(#555, #111);
   bottom: 0px;
   border-top: 1px solid #555;

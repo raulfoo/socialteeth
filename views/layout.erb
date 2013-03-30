@@ -23,16 +23,16 @@
     <div id="wrapper">
       <div id="sidebar">
         <a href="/" class="logo <%= params[:logo] %>">SocialTeeth</a>
-        <div class="nav">
+        <!--<div class="nav">
           <ul>
             <li><a href="/">Watch</a></li>
             <li>
               <ul>
-                <% @ads.each do |ad| %>
-                  <li class="<%= production? && ad.id == 10 ? "disabled" : "" %>">
-                    <a href="/ads/<%= ad.public_id %>"><%= ad.issue || ad.title %></a>
+                <%# @ads.each do |ad| %>
+                  <li class="<%#= production? && ad.id == 10 ? "disabled" : "" %>">
+                    <a href="/ads/<%#= ad.public_id %>"><%#= ad.issue || ad.title %></a>
                   </li>
-                <% end %>
+                <%# end %>
               </ul>
             </li>
             <li><a href="/submit">Submit</a></li>
@@ -41,19 +41,21 @@
             <li><a href="/faq">FAQ</a></li>
 
           </ul>
-          <div id="socialMedia"><%= erb :_social_media %></div>
-        </div>
+          <div id="socialMedia"><%#= erb :_social_media %></div>
+        </div>-->
       </div>
       <div id="header">
-        <div id="signin">
-          <% if current_user %>
-            <span class="username"><a href="/profile"><%= current_user.name %></a></span> |
+        
+
+       <!-- <div id="signin">
+          <%# if current_user %>
+            <span class="username"><a href="/profile"><%#= current_user.name %></a></span> |
             <a href="/signout">Sign Out</a>
-          <% else %>
-            <a href="/signin?redirect=<%= request.path_info %>">Create an Account</a> |
-            <a href="/signin?redirect=<%= request.path_info %>">Sign In</a>
-          <% end %>
-        </div>
+          <%# else %>
+            <a href="/signin?redirect=<%#= request.path_info %>">Create an Account</a> |
+            <a href="/signin?redirect=<%#= request.path_info %>">Sign In</a>
+          <%# end %>
+        </div>-->
       </div>
       <div id="content">
         <%= yield %>
